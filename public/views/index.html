@@ -1,0 +1,30 @@
+<html ng-app="edu-control">
+    <head>
+        <link rel="stylesheet" href="app/assets/bootstrap/dist/css/bootstrap.css">
+
+        <script src="app/assets/angular/angular.js"></script>
+        <script src="app/assets/angular-i18n/angular-locale_pt-br.js"></script>
+        <script src="app/assets/angular-route/angular-route.js"></script>
+        <script src="app/assets/angular-messages/angular-messages.js"></script>        
+
+        <script src="app/app.js"></script>
+        <script src="app/config/route.js"></script>
+        <script src="app/config/config.js"></script>
+        <script src="app/config/interceptors.js"></script>
+        <script src="app/interceptor/load-interceptor.js"></script>
+
+        <script src="app/utils/request-utils.js"></script>
+        <script src="app/utils/mensagem-utils.js"></script>
+
+        <script src="app/controller/lista-livro-controller.js"></script>
+        <script src="app/controller/novo-livro-controller.js"></script>
+        <script src="app/service/livro-service.js"></script>
+
+        <script src="app/directives/monetario-directive.js"></script>
+        <script src="app/directives/mensagem-directive.js"></script>
+    </head>
+    <body>
+        <div ng-show="load">Carregando...</div>
+        <div ng-hide="load" ng-view></div>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "edu-control",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Ricardo Almendro Ruiz <ricardo.almendro.ruiz@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/app/assets",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "angular-i18n": "^1.5.8",
+    "angular-messages": "^1.5.8"
+  }
+}

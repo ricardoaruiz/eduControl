@@ -1,0 +1,34 @@
+<div class="container">
+
+    <rar-mensagem></rar-mensagem>
+
+    <div class="text-center">
+        <h2>Novo Livros</h2>
+    </div>
+    <form name="frmNovoLivro" ng-submit="salvar(livro)" novalidate>
+        <div class="form-group">
+            <input type="text" name="titulo" ng-model="livro.titulo" class="form-control" placeholder="Título" ng-required="true" ng-maxlength="255"/>
+            <div ng-messages="frmNovoLivro.$submitted && frmNovoLivro.titulo.$error" role="alert">
+                <div ng-message="required" class="alert alert-danger">Campo obrigatório</div>
+                <div ng-message="maxlength" class="alert alert-danger">Campo não deve contér mais de 255 caracteres</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" name="descricao" ng-model="livro.descricao" class="form-control" placeholder="Descrição" ng-required="true"/>
+            <div ng-messages="frmNovoLivro.$submitted && frmNovoLivro.descricao.$error" role="alert">
+                <div ng-message="required" class="alert alert-danger">Campo obrigatório</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" rar-monetario menorIgualZero name="preco" ng-model="livro.preco" class="form-control" placeholder="Preço: 29,99" ng-required="true" maxlength="7"/>
+            <div ng-messages="frmNovoLivro.$submitted && frmNovoLivro.preco.$error">
+                <div ng-message="required" class="alert alert-danger">Campo obrigatório</div>
+                <div ng-show="frmNovoLivro.preco.$error.menorIgualZero" class="alert alert-danger">O preço deve ser maior que 0,00</div>                
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Salvar</button>
+            <button class="btn btn-primary" ng-click="voltar()">Voltar</button>
+        </div>
+    </form>
+</div>
