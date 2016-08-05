@@ -5,9 +5,7 @@ module.exports = function(){
 
     app.use(express.static('public'));
     app.use(express.static('public/views'));
-    app.use(express.static('public/app'));
-    app.use(express.static('public/app/assets'));
-    app.use(express.static('public/app/assets/angular-route'));
+    app.use(express.static('bower_components'));
 
     return app;
 }
