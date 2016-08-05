@@ -36,7 +36,8 @@ app.controller('ListaLivroController',
                 }
             },
             function(error) {
-                console.log('erro');
+                MensagemUtil.showError('Erro de servidor.');
+                console.log(error);
             }
         );
 
@@ -64,9 +65,8 @@ app.controller('ListaLivroController',
                 if(response.status == 400) {
                     MensagemUtil.showError('Problema com os dados que foram enviados.');
                     console.log(response);
-                }
-                if(response.status == 500) {
-                    MensagemUtil.showError('Problema ao consultar os livros.');
+                } else {
+                    MensagemUtil.showError('Erro de servidor.');
                     console.log(response);
                 }
             }
