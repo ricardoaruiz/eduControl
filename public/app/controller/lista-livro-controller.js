@@ -1,6 +1,57 @@
-app.controller('ListaLivroController', function($scope, $location, LivroService, MensagemUtil) {
-    
-    $scope.buscar = function(filtro) {
+app.controller('ListaLivroController', 
+            ['$scope', '$location', '$route', 'AppConfig', 'LivroService', 'MensagemUtil', 
+    function( $scope,   $location,   $route,   AppConfig,   LivroService,   MensagemUtil) {  
+
+    var montaFiltroPaginacao = function(filtro, pagina) {
+        if(!pagina || pagina == 0) {
+            $scope.pagina = 0;  
+        } else {
+            $scope.pagina = pagina-1;
+        }       
+
+        if(!filtro){
+            filtro = {
+                regPorPagina : new String(AppConfig.registrosPorPagina),
+                pagina : new String($scope.pagina)
+            }
+        } else {
+            filtro.regPorPagina = new String(AppConfig.registrosPorPagina);
+            filtro.pagina = new String($scope.pagina);
+        }
+        return filtro;
+    }
+
+    var paginacao = function(filtro, pagina) {
+
+       filtro = montaFiltroPaginacao(filtro, pagina);
+
+        LivroService.paginacao(filtro).then(
+            function(response) {
+                console.log(response.data);
+                $scope.paginacao = response.data;
+
+                $scope.paginas = new Array();
+                for(i=1; i<=response.data.paginas; i++) {
+                    $scope.paginas.push(i);
+                }
+            },
+            function(error) {
+                console.log('erro');
+            }
+        );
+
+    }
+
+    var buscar = function(filtro, pagina, busca) {
+
+        if(busca) {
+            filtro = montaFiltroPaginacao(filtro, pagina);
+            $scope.filtroEstatico = angular.copy(filtro);
+        } else {
+            filtro = angular.copy($scope.filtroEstatico);
+        }
+
+        paginacao(filtro, pagina);
 
         LivroService.buscar(filtro).then(
             function(response) {
@@ -22,14 +73,14 @@ app.controller('ListaLivroController', function($scope, $location, LivroService,
         );
     }
 
+    $scope.buscar = buscar; 
+
     $scope.limpar = function() {
-        $scope.filtro = {};
-        $scope.livros = [];
-        MensagemUtil.clearMessages();
+        $route.reload();
     }
 
     $scope.novo = function() {
         $location.path('/livros/novo');
     }
 
-});
+}]);

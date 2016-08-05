@@ -58,10 +58,12 @@ app.directive('rarMonetario', function() {
                         value = value + ',00';
                     }
 
-                    if(parseFloat(value) <= 0.0) {
-                        ngModel.$setValidity('menorIgualZero', false);
-                    } else {
-                        ngModel.$setValidity('menorIgualZero', true);
+                    if(attr.maiorzero === 'true') {
+                        if(parseFloat(value) <= 0.0) {
+                            ngModel.$setValidity('zero', false);
+                        } else {
+                            ngModel.$setValidity('zero', true);
+                        }
                     }
 
                     element.val(value);

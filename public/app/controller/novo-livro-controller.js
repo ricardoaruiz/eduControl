@@ -1,4 +1,6 @@
-app.controller('NovoLivroController', function($scope, $location, LivroService, MensagemUtil) {
+app.controller('NovoLivroController', 
+           ['$scope', '$location', 'LivroService', 'MensagemUtil',
+    function($scope,   $location,   LivroService,   MensagemUtil) {
 
     $scope.voltar = function() {
         $location.path('/livros');
@@ -34,4 +36,4 @@ app.controller('NovoLivroController', function($scope, $location, LivroService, 
         return valor > 0;
     }
 
-});
+}]);

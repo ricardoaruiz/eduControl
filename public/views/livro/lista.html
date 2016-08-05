@@ -6,29 +6,30 @@
         <h2>Consulta de Livros</h2>
     </div>
     <div>
-        <div class="form-group">
-            <input type="text" name="titulo" ng-model="filtro.titulo" class="form-control" placeholder="Título"/>        
-        </div>
-        <div class="form-group">
-            <input type="text" name="descricao" ng-model="filtro.descricao" class="form-control" placeholder="Descrição"/>        
-        </div>
-        <div class="form-group">
-            <input type="text" rar-monetario name="preco" ng-model="filtro.preco" class="form-control" placeholder="Preço: 29,99" maxlength="7"/>        
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary" ng-click="buscar(filtro)">Buscar</button>
-            <button class="btn btn-primary" ng-click="limpar()">Limpar</button>
-            <button class="btn btn-primary" ng-click="novo()">Novo</button>     
-        </div>            
+        <form name="frmListar">
+            <div class="form-group">
+                <input type="text" name="titulo" ng-model="filtro.titulo" class="form-control" placeholder="Título"/>        
+            </div>
+            <div class="form-group">
+                <input type="text" name="descricao" ng-model="filtro.descricao" class="form-control" placeholder="Descrição"/>        
+            </div>
+            <div class="form-group">
+                <input type="text" rar-monetario name="preco" ng-model="filtro.preco" class="form-control" placeholder="Preço: 29,99" maxlength="7"/>        
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" ng-click="buscar(filtro, 0, true)">Buscar</button>
+                <button class="btn btn-primary" ng-click="limpar()">Limpar</button>
+                <button class="btn btn-primary" ng-click="novo()">Novo</button>     
+            </div>            
+        </form>
     </div>
 
     <div ng-if="livros.length">
-
         <div class="form-group">
             <input type="text" name="busca" ng-model="busca" class="form-control" placeholder="Refine sua busca aqui..."/>
         </div>
 
-        <table class="table">
+        <table class="table table-hover table-responsive table-condensed">
             <tr>
                 <th>Título</th>
                 <th>Descrição</th>
@@ -40,5 +41,24 @@
                 <td>{{livro.preco | currency}}</td>
             </tr>
         </table>
-    </div>
+
+        <nav aria-label="Page navigation" ng-if="paginacao">
+            <ul class="pagination">
+                <li>
+                <a aria-label="Previous" ng-click="buscar(filtro, 0)">
+                    <span aria-hidden="true">&laquo;Primeira</span>
+                </a>
+                </li>
+                <li ng-repeat="p in paginas" ng-class="{active : pagina == p-1}">
+                    <a ng-click="buscar(filtro, p)">{{p}}</a>
+                </li>
+                <li>
+                <a aria-label="Next" ng-click="buscar(filtro, paginacao.paginas)">
+                    <span aria-hidden="true">Última&raquo;</span>
+                </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>    
 </div>    
