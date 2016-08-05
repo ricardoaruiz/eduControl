@@ -1,4 +1,4 @@
 app.constant('AppConfig', {
-        eduControlApi : 'http://localhost:9100',
+        eduControlApi : 'http://edu-control-api.herokuapp.com',
         registrosPorPagina : 5
 });
