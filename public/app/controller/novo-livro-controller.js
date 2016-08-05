@@ -21,9 +21,8 @@ app.controller('NovoLivroController',
                     if(error.status == 400) {
                         MensagemUtil.showError('Problema nos dados enviados para inserir o livro.');
                         console.log(error);
-                    }
-                    if(error.status == 500) {
-                        MensagemUtil.showError('Problema no servidor ao inserir o livro.');
+                    } else {
+                        MensagemUtil.showError('Erro de servidor.');
                         console.log(error);
                     }
                 }
